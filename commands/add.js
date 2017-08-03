@@ -1,22 +1,26 @@
 const fs = require('fs')
-const readTasks = require('../readTasks.js')
+const { Client } = require('pg')
+const client = new Client({
+  database: 'todolist'
+})
+
+client.connect()
+
+const addToDatabase = (task) => {
+  client.query('INSERT INTO todolist (task) VALUES ($1) RETURNING id', [task])
+    .then(res => {
+      console.log(`Created task ${res.rows[0].id}`)
+      client.end()
+    })
+    .catch(err => console.error(err))
+}
 
 const add = (newTask) => {
-  readTasks((tasks) => {
-    if (!newTask) {
-      console.warn("Please add a task name")
-      return
-    }
-    let toDo = {}
-    const id = () => tasks.length !== 0 ? tasks[tasks.length - 1].id + 1 : 1
-    toDo.id = id()
-    toDo.task = newTask
-    tasks.push(toDo)
-    console.log(`Created task ${toDo.id}.`)
-    fs.writeFile('./tasks.json', JSON.stringify(tasks), (err) => {
-      if (err) throw err;
-    })
-  })
+  if (!newTask) {
+    console.warn("Please add a task name")
+    return
+  }
+  addToDatabase(newTask)
 }
 
 module.exports = add
