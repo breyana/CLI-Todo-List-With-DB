@@ -34,7 +34,23 @@ const listAllFromDB = () => {
     })
 }
 
+const removeFromDB = (id) => {
+  client.query('DELETE FROM todolist WHERE id=$1', [id])
+    .then(response => {
+      if (response.rowCount === 0) {
+        console.log(`ID ${id} was not found.`)
+      } else {
+        console.log(`ID ${id} has been completed`)
+      }
+      client.end()
+    })
+    .catch(err => {
+      console.error(err)
+    })
+}
+
 module.exports = {
   addToDatabase,
-  listAllFromDB
+  listAllFromDB,
+  removeFromDB
  }

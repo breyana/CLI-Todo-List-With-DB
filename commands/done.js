@@ -1,19 +1,10 @@
-const fs = require('fs');
-const readTasks = require('../readTasks.js')
+const { removeFromDB } = require('../db')
 
 const done = (num) => {
-  readTasks((tasks) => {
-    let index = tasks.findIndex((task) => {
-      return task.id === +num
-    })
-    if (index < 0) {
-      console.log('ID ' + num + ' does not exist')
-    }
-    tasks.splice(index, 1)
-    fs.writeFile('./tasks.json', JSON.stringify(tasks), (err) => {
-      if (err) throw err
-    })
-  })
+  if (!num) {
+    throw new Error('Please enter an ID number')
+  }
+  removeFromDB(num)
 }
 
 module.exports = done
