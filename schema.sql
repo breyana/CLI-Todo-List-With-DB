@@ -1,0 +1,1 @@
+CREATE TABLE todolist (id INTEGER PRIMARY KEY, task VARCHAR(255));

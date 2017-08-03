@@ -21,6 +21,7 @@
   "homepage": "https://github.com/breyana/Command-Line-Todo-List#readme",
   "dependencies": {
     "chai": "^4.0.2",
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "pg": "^7.0.2"
   }
 }
