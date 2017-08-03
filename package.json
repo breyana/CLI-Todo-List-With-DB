@@ -1,0 +1,26 @@
+{
+  "name": "command-line-todo-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "task.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha tests/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/breyana/Command-Line-Todo-List.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/breyana/Command-Line-Todo-List/issues"
+  },
+  "homepage": "https://github.com/breyana/Command-Line-Todo-List#readme",
+  "dependencies": {
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2"
+  }
+}
