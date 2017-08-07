@@ -5,7 +5,7 @@ const client = new Client({
 
 client.connect()
 
-const addToDatabase = (task) => {
+const addToDB = (task) => {
   client.query('INSERT INTO todolist (task) VALUES ($1) RETURNING id', [task])
     .then(response => {
       console.log(`Created task ${response.rows[0].id}`)
@@ -50,7 +50,7 @@ const removeFromDB = (id) => {
 }
 
 module.exports = {
-  addToDatabase,
+  addToDB,
   listAllFromDB,
   removeFromDB
  }
